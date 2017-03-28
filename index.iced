@@ -4,7 +4,7 @@ util = require 'util'
 #=========================================================
 
 exports.BaseError = BaseError = (msg, constructor) ->
-  Error.captureStackTrace @, @constructor
+  Error.captureStackTrace? @, @constructor
   @message = msg or 'Error'
 util.inherits BaseError, Error
 BaseError.prototype.name = "BaseError"
