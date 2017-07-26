@@ -64,7 +64,7 @@ exports.make_esc = make_esc = (gcb, where) -> (lcb) ->
     if not err? then lcb args...
     else if not gcb.__esc
       gcb.__esc = true
-      ipush err, where
+      ipush err, (where ? arguments?.caller?.callee?.name ? "unnamed error")
       gcb err
 
 #================================================
