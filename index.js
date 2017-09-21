@@ -95,13 +95,13 @@
   exports.make_esc = make_esc = function(gcb, where) {
     return function(lcb) {
       return copy_trace(lcb, function() {
-        var args, err;
+        var args, err, _ref, _ref1, _ref2;
         err = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
         if (err == null) {
           return lcb.apply(null, args);
         } else if (!gcb.__esc) {
           gcb.__esc = true;
-          ipush(err, where);
+          ipush(err, (_ref = where != null ? where : arguments != null ? (_ref1 = arguments.caller) != null ? (_ref2 = _ref1.callee) != null ? _ref2.name : void 0 : void 0 : void 0) != null ? _ref : "unnamed error");
           return gcb(err);
         }
       });
