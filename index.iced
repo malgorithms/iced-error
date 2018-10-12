@@ -66,13 +66,15 @@ ipush = (e, msg) ->
     e.istack.push msg
 
 # Error short-circuit connector
-exports.make_esc = make_esc = (gcb, where) -> (lcb) ->
-  copy_trace lcb, (err, args...) ->
-    if not err? then lcb args...
-    else if not gcb.__esc
-      gcb.__esc = true
-      ipush err, (where ? arguments?.caller?.callee?.name ? "unnamed error")
-      gcb err
+exports.make_esc = make_esc = (gcb, where) ->
+  where or= make_esc.caller?.name
+  return (lcb) ->
+    copy_trace lcb, (err, args...) ->
+      if not err? then lcb args...
+      else if not gcb.__esc
+        gcb.__esc = true
+        ipush err, where ? "unnamed error"
+        gcb err
 
 #================================================
 

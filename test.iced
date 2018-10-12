@@ -27,18 +27,24 @@ other_func = (cb) ->
   await always_fail esc defer()
   cb null
 
+# Trampoline is only used so the call stacks are higher, for testing purposes.
+trampoline = (fx, cb) ->
+  esc = make_esc cb, "trampoline"
+  await fx esc defer()
+  cb null
+
 exports.test_set_cb_name = (T, cb) ->
   esc = make_esc cb
-  await other_func defer err
+  await trampoline other_func, defer err
   T.assert err.istack?, "has istack"
-  T.equal err.istack?.length, 1
-  T.equal err.istack?[0], "other_func"
+  T.equal err.istack?.length, 2
+  T.equal err.istack, ["other_func", "trampoline"]
   cb null
 
 exports.test_default_cb_name = (T, cb) ->
   esc = make_esc cb
-  await some_func defer err
+  await trampoline some_func, defer err
   T.assert err.istack?, "has istack"
-  T.equal err.istack?.length, 1
-  T.equal err.istack?[0], "some_func"
+  T.equal err.istack?.length, 2
+  T.equal err.istack, ["some_func", "trampoline"]
   cb null
