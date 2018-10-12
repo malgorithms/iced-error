@@ -9,7 +9,8 @@
     "url": "https://github.com/maxtaco/iced-error.git"
   },
   "devDependencies": {
-    "iced-coffee-script": "^108.0.11"
+    "iced-coffee-script": "^108.0.11",
+    "iced-test": "0.0.24"
   },
   "licenses": [
     {
