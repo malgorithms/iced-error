@@ -1,6 +1,7 @@
 if require.main is module
   test = require 'iced-test'
   path = require 'path'
+  iced = require 'iced-runtime'
   class Runner extends test.ServerRunner
     load_files : ({mainfile}, cb) ->
       @_dir = path.dirname mainfile
