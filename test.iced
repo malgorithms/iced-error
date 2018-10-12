@@ -42,6 +42,9 @@ exports.test_set_cb_name = (T, cb) ->
   cb null
 
 exports.test_default_cb_name = (T, cb) ->
+  if parseInt(process.version.substring(1)) <= 5
+    T.waypoint "skipping test, node #{process.version} does not support default esc names"
+    return cb null
   esc = make_esc cb
   await trampoline some_func, defer err
   T.assert err.istack?, "has istack"
