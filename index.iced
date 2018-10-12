@@ -67,7 +67,7 @@ ipush = (e, msg) ->
 
 # Error short-circuit connector
 exports.make_esc = make_esc = (gcb, where) ->
-  where or= make_esc.caller?.name
+  where = make_esc.caller?.name unless where?
   return (lcb) ->
     copy_trace lcb, (err, args...) ->
       if not err? then lcb args...

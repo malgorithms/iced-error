@@ -94,7 +94,9 @@
 
   exports.make_esc = make_esc = function(gcb, where) {
     var _ref;
-    where || (where = (_ref = make_esc.caller) != null ? _ref.name : void 0);
+    if (where == null) {
+      where = (_ref = make_esc.caller) != null ? _ref.name : void 0;
+    }
     return function(lcb) {
       return copy_trace(lcb, function() {
         var args, err;
