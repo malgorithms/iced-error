@@ -2,11 +2,11 @@
   "name": "iced-error",
   "version": "0.0.12",
   "description": "An error-handling class written with/for IcedCoffeeScript",
-  "homepage": "https://github.com/maxtaco/iced-error",
+  "homepage": "https://github.com/keybase/iced-error",
   "main": "./index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/maxtaco/iced-error.git"
+    "url": "https://github.com/keybase/iced-error.git"
   },
   "devDependencies": {
     "iced-coffee-script": "^108.0.11",
