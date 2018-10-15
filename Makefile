@@ -15,4 +15,7 @@ clean:
 setup:
 	npm install -d
 
-.PHONY: setup pubclean
+test: index.js
+	$(ICED) test.iced
+
+.PHONY: setup pubclean test

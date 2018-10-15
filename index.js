@@ -93,15 +93,19 @@
   };
 
   exports.make_esc = make_esc = function(gcb, where) {
+    var _ref;
+    if (where == null) {
+      where = (_ref = make_esc.caller) != null ? _ref.name : void 0;
+    }
     return function(lcb) {
       return copy_trace(lcb, function() {
-        var args, err, _ref, _ref1, _ref2;
+        var args, err;
         err = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
         if (err == null) {
           return lcb.apply(null, args);
         } else if (!gcb.__esc) {
           gcb.__esc = true;
-          ipush(err, (_ref = where != null ? where : arguments != null ? (_ref1 = arguments.caller) != null ? (_ref2 = _ref1.callee) != null ? _ref2.name : void 0 : void 0 : void 0) != null ? _ref : "unnamed error");
+          ipush(err, where != null ? where : "unnamed error");
           return gcb(err);
         }
       });
